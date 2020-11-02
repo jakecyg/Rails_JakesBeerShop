@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_02_072840) do
+ActiveRecord::Schema.define(version: 2020_11_02_073942) do
+
+  create_table "beers", force: :cascade do |t|
+    t.string "Name"
+    t.string "Description"
+    t.integer "Price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "brand_id", null: false
+    t.index ["brand_id"], name: "index_beers_on_brand_id"
+  end
 
   create_table "brands", force: :cascade do |t|
     t.string "Name"
@@ -19,13 +29,13 @@ ActiveRecord::Schema.define(version: 2020_11_02_072840) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "ordered_products", force: :cascade do |t|
+  create_table "ordered_beers", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "order_id", null: false
-    t.integer "product_id", null: false
-    t.index ["order_id"], name: "index_ordered_products_on_order_id"
-    t.index ["product_id"], name: "index_ordered_products_on_product_id"
+    t.integer "beer_id", null: false
+    t.index ["beer_id"], name: "index_ordered_beers_on_beer_id"
+    t.index ["order_id"], name: "index_ordered_beers_on_order_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -36,16 +46,6 @@ ActiveRecord::Schema.define(version: 2020_11_02_072840) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id", null: false
     t.index ["user_id"], name: "index_orders_on_user_id"
-  end
-
-  create_table "products", force: :cascade do |t|
-    t.string "Name"
-    t.string "Description"
-    t.integer "Price"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "brand_id", null: false
-    t.index ["brand_id"], name: "index_products_on_brand_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(version: 2020_11_02_072840) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "ordered_products", "orders"
-  add_foreign_key "ordered_products", "products"
+  add_foreign_key "beers", "brands"
+  add_foreign_key "ordered_beers", "beers"
+  add_foreign_key "ordered_beers", "orders"
   add_foreign_key "orders", "users"
-  add_foreign_key "products", "brands"
 end
