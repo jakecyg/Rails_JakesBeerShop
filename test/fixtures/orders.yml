@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  OrderNumber: 1
+  OrderTotal: 9.99
+  PaymentType: MyString
+
+two:
+  OrderNumber: 1
+  OrderTotal: 9.99
+  PaymentType: MyString
