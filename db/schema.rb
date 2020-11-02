@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_02_203334) do
+ActiveRecord::Schema.define(version: 2020_11_02_210430) do
 
   create_table "beers", force: :cascade do |t|
-    t.string "Name"
-    t.string "Description"
-    t.integer "Price"
+    t.string "name"
+    t.string "description"
+    t.integer "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "brand_id", null: false
@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 2020_11_02_203334) do
   end
 
   create_table "brands", force: :cascade do |t|
-    t.string "Name"
-    t.string "Description"
+    t.string "name"
+    t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -41,9 +41,9 @@ ActiveRecord::Schema.define(version: 2020_11_02_203334) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "OrderNumber"
-    t.decimal "OrderTotal"
-    t.string "PaymentType"
+    t.integer "order_number"
+    t.decimal "order_total"
+    t.string "payment_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id", null: false
@@ -51,13 +51,13 @@ ActiveRecord::Schema.define(version: 2020_11_02_203334) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "FirstName"
-    t.string "LastName"
-    t.string "Email"
-    t.boolean "isEmailConfirmed"
-    t.integer "PhoneNumber"
-    t.string "Address"
-    t.string "PostalCode"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.boolean "is_email_confirmed"
+    t.integer "phone_number"
+    t.string "address"
+    t.string "postal_code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
